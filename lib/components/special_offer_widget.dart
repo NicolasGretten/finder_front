@@ -44,7 +44,7 @@ class SpecialOfferWidget extends StatelessWidget {
             ),
           ),
         ),
-        Image.asset(data.icon),
+        Image.asset(data.icon, fit: BoxFit.fitWidth),
       ],
     );
   }

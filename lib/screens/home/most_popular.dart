@@ -87,12 +87,12 @@ class MostPopularTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text('Most Popular',
+        const Text('Les plus populaires',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color(0xFF212121))),
         TextButton(
           onPressed: () => onTapseeAll(),
           child: const Text(
-            'See All',
+            'Voir tout',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,

@@ -22,7 +22,7 @@ class _MostPopularScreenState extends State<MostPopularScreen> {
     return Scaffold(
       appBar: FRAppBar.defaultAppBar(
         context,
-        title: 'Most Popular',
+        title: 'Les plus populaires',
         actions: [
           IconButton(
             icon: Image.asset('assets/icons/search@2x.png', scale: 2.0),

@@ -15,9 +15,9 @@ class SpecialOffer {
 final homeSpecialOffers = <SpecialOffer>[
   SpecialOffer(
     discount: '25%',
-    title: "Today’s Special!",
-    detail: 'Get discount for every order, only valid for today',
-    icon: 'assets/icons/products/sofa.png',
+    title: "Super affaires du jours !",
+    detail: "L'affaire du jour à ne pas manqué",
+    icon: 'today.png',
   ),
   SpecialOffer(
     discount: '35%',

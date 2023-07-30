@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/auth_service.dart';
+import '../../utils/locator.dart';
+
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  final authService = getIt<AuthService>();
+  ProfileHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +15,10 @@ class ProfileHeader extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Row(
             children: [
-              Image.asset('assets/icons/profile/logo@2x.png', scale: 2),
+              Image.asset('icons/logo-no-background.png', scale: 10, color: Colors.deepPurple,),
               const SizedBox(width: 16),
               const Expanded(
-                child: Text('Profile', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                child: Text('', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               ),
               IconButton(
                 iconSize: 28,
@@ -27,9 +31,9 @@ class ProfileHeader extends StatelessWidget {
         const SizedBox(height: 30),
         Stack(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage('assets/icons/me.png'),
+              backgroundImage: NetworkImage(authService.loggedInUser!.photoURL!),
             ),
             Positioned.fill(
               child: Align(
@@ -43,9 +47,9 @@ class ProfileHeader extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        const Text('Abson He', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+        Text(authService.loggedInUser!.displayName!, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
         const SizedBox(height: 8),
-        const Text('+86 16620093834', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+        Text(authService.loggedInUser!.email!, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
         const SizedBox(height: 20),
         Container(
           color: const Color(0xFFEEEEEE),

@@ -98,13 +98,13 @@ class _SpecialOffersState extends State<SpecialOffers> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Text(
-          'Special Offers',
+          'Offre spéciale',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color(0xFF212121)),
         ),
         TextButton(
           onPressed: () => widget.onTapSeeAll?.call(),
           child: const Text(
-            'See All',
+            'Voir tout',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF212121)),
           ),
         ),

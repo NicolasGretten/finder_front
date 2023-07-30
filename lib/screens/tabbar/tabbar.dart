@@ -5,6 +5,10 @@ import 'package:freshbuyer/screens/profile/profile_screen.dart';
 import 'package:freshbuyer/screens/test/test_screen.dart';
 import 'package:freshbuyer/size_config.dart';
 
+import '../../utils/auth_service.dart';
+import '../../utils/locator.dart';
+import '../auth/login.dart';
+
 class TabbarItem {
   final String lightIcon;
   final String boldIcon;
@@ -24,7 +28,7 @@ class TabbarItem {
 }
 
 class FRTabbarScreen extends StatefulWidget {
-  const FRTabbarScreen({super.key});
+  FRTabbarScreen({super.key});
 
   @override
   State<FRTabbarScreen> createState() => _FRTabbarScreenState();
@@ -34,13 +38,12 @@ class _FRTabbarScreenState extends State<FRTabbarScreen> {
   int _select = 0;
 
   final screens = [
-    const HomeScreen(
-      title: '首页0',
-    ),
-    const TestScreen(title: 'Cart'),
-    const TestScreen(title: 'Orders'),
-    const TestScreen(title: 'Wallet'),
-    const ProfileScreen(),
+    const GraphQLWidgetScreen(),
+    // const TestScreen(title: 'Cart'),
+    // const TestScreen(title: 'Orders'),
+    // const TestScreen(title: 'Wallet'),
+    // const LoginScreen(),
+    const ProfileScreen()
   ];
 
   static Image generateIcon(String path) {
@@ -57,21 +60,21 @@ class _FRTabbarScreenState extends State<FRTabbarScreen> {
       activeIcon: generateIcon('bold/Home@2x.png'),
       label: 'Home',
     ),
-    BottomNavigationBarItem(
-      icon: generateIcon('light/Bag@2x.png'),
-      activeIcon: generateIcon('bold/Bag@2x.png'),
-      label: 'Cart',
-    ),
-    BottomNavigationBarItem(
-      icon: generateIcon('light/Buy@2x.png'),
-      activeIcon: generateIcon('bold/Buy@2x.png'),
-      label: 'Orders',
-    ),
-    BottomNavigationBarItem(
-      icon: generateIcon('light/Wallet@2x.png'),
-      activeIcon: generateIcon('bold/Wallet@2x.png'),
-      label: 'Wallet',
-    ),
+    // BottomNavigationBarItem(
+    //   icon: generateIcon('light/Bag@2x.png'),
+    //   activeIcon: generateIcon('bold/Bag@2x.png'),
+    //   label: 'Cart',
+    // ),
+    // BottomNavigationBarItem(
+    //   icon: generateIcon('light/Buy@2x.png'),
+    //   activeIcon: generateIcon('bold/Buy@2x.png'),
+    //   label: 'Orders',
+    // ),
+    // BottomNavigationBarItem(
+    //   icon: generateIcon('light/Wallet@2x.png'),
+    //   activeIcon: generateIcon('bold/Wallet@2x.png'),
+    //   label: 'Wallet',
+    // ),
     BottomNavigationBarItem(
       icon: generateIcon('light/Profile@2x.png'),
       activeIcon: generateIcon('bold/Profile@2x.png'),

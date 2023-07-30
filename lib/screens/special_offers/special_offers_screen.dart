@@ -20,7 +20,7 @@ class _SpecialOfferScreenState extends State<SpecialOfferScreen> {
     return Scaffold(
       appBar: FRAppBar.defaultAppBar(
         context,
-        title: 'Special Offers',
+        title: 'Offre spéciale',
         actions: [
           IconButton(
             icon: Image.asset('assets/icons/search@2x.png', scale: 2.0),

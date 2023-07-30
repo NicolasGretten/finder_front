@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:freshbuyer/constants.dart';
 import 'package:freshbuyer/screens/profile/profile_screen.dart';
 
+import '../../utils/auth_service.dart';
+import '../../utils/locator.dart';
+import '../../utils/navigation_service.dart';
+
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+  final authService = getIt<AuthService>();
+  final navigationService = getIt<NavigationService>();
+  HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +19,9 @@ class HomeAppBar extends StatelessWidget {
         children: [
           InkWell(
             borderRadius: const BorderRadius.all(Radius.circular(24)),
-            onTap: () => Navigator.pushNamed(context, ProfileScreen.route()),
-            child: const CircleAvatar(
-              backgroundImage: AssetImage('$kIconPath/me.png'),
+            onTap: () => navigationService.navigateTo('/profile'),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(authService.loggedInUser!.photoURL!),
               radius: 24,
             ),
           ),
@@ -25,18 +31,18 @@ class HomeAppBar extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Good Morning 👋',
+                children: [
+                  const Text(
+                    'Bienvenue',
                     style: TextStyle(
                       color: Color(0xFF757575),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Text(
-                    'Abson He',
-                    style: TextStyle(
+                    authService.loggedInUser!.displayName!,
+                    style: const TextStyle(
                       color: Color(0xFF212121),
                       fontWeight: FontWeight.bold,
                     ),

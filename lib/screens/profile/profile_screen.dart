@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:freshbuyer/screens/profile/header.dart';
+
+import '../../utils/auth_service.dart';
+import '../../utils/locator.dart';
 
 typedef ProfileOptionTap = void Function();
 
@@ -31,6 +35,7 @@ class ProfileOption {
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+
   static String route() => '/profile';
 
   @override
@@ -38,29 +43,31 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final authService = getIt.get<AuthService>();
   static _profileIcon(String last) => 'assets/icons/profile/$last';
 
   bool _isDark = false;
 
   get datas => <ProfileOption>[
-        ProfileOption.arrow(title: 'Edit Profile', icon: _profileIcon('user@2x.png')),
-        ProfileOption.arrow(title: 'Adress', icon: _profileIcon('location@2x.png')),
+        ProfileOption.arrow(title: 'Modifier le profil', icon: _profileIcon('user@2x.png')),
+        ProfileOption.arrow(title: 'Addresse', icon: _profileIcon('location@2x.png')),
         ProfileOption.arrow(title: 'Notification', icon: _profileIcon('notification@2x.png')),
-        ProfileOption.arrow(title: 'Payment', icon: _profileIcon('wallet@2x.png')),
-        ProfileOption.arrow(title: 'Security', icon: _profileIcon('shield_done@2x.png')),
+        ProfileOption.arrow(title: 'Paiement', icon: _profileIcon('wallet@2x.png')),
+        ProfileOption.arrow(title: 'Sécurité', icon: _profileIcon('shield_done@2x.png')),
         _languageOption(),
         _darkModel(),
-        ProfileOption.arrow(title: 'Help Center', icon: _profileIcon('info_square@2x.png')),
-        ProfileOption.arrow(title: 'Invite Friends', icon: _profileIcon('user@2x.png')),
+        ProfileOption.arrow(title: "Centre d'aide", icon: _profileIcon('info_square@2x.png')),
+        ProfileOption.arrow(title: 'Parrainez un amis', icon: _profileIcon('user@2x.png')),
         ProfileOption(
-          title: 'Logout',
+          title: 'Déconnexion',
           icon: _profileIcon('logout@2x.png'),
           titleColor: const Color(0xFFF75555),
+          onClick: () =>  authService.loginOutWithGoogle()
         ),
       ];
 
   _languageOption() => ProfileOption(
-      title: 'Language',
+      title: 'Langues',
       icon: _profileIcon('more_circle@2x.png'),
       trailing: SizedBox(
         width: 150,
@@ -68,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const Text(
-              'English (US)',
+              'Anglais (US)',
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Color(0xFF212121)),
             ),
             const SizedBox(width: 16),
@@ -78,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ));
 
   _darkModel() => ProfileOption(
-      title: 'Dark Mode',
+      title: 'Mode sombre',
       icon: _profileIcon('show@2x.png'),
       trailing: Switch(
         value: _isDark,
@@ -95,10 +102,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverList(
+          SliverList(
             delegate: SliverChildListDelegate.fixed([
               Padding(
-                padding: EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.only(top: 30),
                 child: ProfileHeader(),
               ),
             ]),
@@ -132,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: data.titleColor),
       ),
       trailing: data.trailing,
-      onTap: () {},
+      onTap: data.onClick,
     );
   }
 }
